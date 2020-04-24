@@ -9,6 +9,8 @@ import { useQuery, gql } from "@apollo/client";
 // for apollo grapgql
 import { ApolloProvider } from "@apollo/client";
 
+import Content from "./components/listingCard";
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
@@ -26,7 +28,7 @@ const Listings = gql`
 `;
 
 const ModifyListing = gql`
-  mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+  mutation modifyBook($ep: Episode!, $review: ReviewInput!) {
     createReview(episode: $ep, review: $review) {
       stars
       commentary
@@ -52,6 +54,7 @@ function ExchangeRates() {
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+      <Content></Content>
       <ExchangeRates></ExchangeRates>
       <button>Click me</button>
       <App />
