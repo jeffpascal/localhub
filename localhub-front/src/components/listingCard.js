@@ -1,5 +1,4 @@
 import React from "react";
-import { FaCommentAlt, FaThumbsUp, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -42,72 +41,6 @@ const Actions = styled.div`
   }
 `;
 
-const FlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  background-color: DodgerBlue;
-`;
-
-const Content = props => {
-  const buttons = [
-    {
-      label: (
-        <>
-          <FaCommentAlt /> 0 Comments
-        </>
-      )
-    },
-    {
-      label: (
-        <>
-          <FaThumbsUp /> 242 Likes
-        </>
-      )
-    },
-    {
-      label: (
-        <>
-          <FaRegEye /> 187288 Views
-        </>
-      )
-    }
-  ];
-  return (
-    <FlexContainer>
-      <ListingCard
-        title="The Benefits of Green Apples"
-        description="Green apples have a high fiber content which helps in increasing the
-        body's metabolism. While consuming an apple, make sure that you're not
-        tossing the peel in the trash. Consuming apple with its peel improves
-        the overall health. Due to its high fiber content, apple helps in
-        detoxification process. It keeps the liver and digestive system away
-        from harmful elements."
-        actions={buttons}
-      />
-      <ListingCard
-        title="The Benefits of Green Apples"
-        description="Green apples have a high fiber content which helps in increasing the
-        body's metabolism. While consuming an apple, make sure that you're not
-        tossing the peel in the trash. Consuming apple with its peel improves
-        the overall health. Due to its high fiber content, apple helps in
-        detoxification process. It keeps the liver and digestive system away
-        from harmful elements."
-        actions={buttons}
-      />
-      <ListingCard
-        title="The Benefits of Green Apples"
-        description="Green apples have a high fiber content which helps in increasing the
-        body's metabolism. While consuming an apple, make sure that you're not
-        tossing the peel in the trash. Consuming apple with its peel improves
-        the overall health. Due to its high fiber content, apple helps in
-        detoxification process. It keeps the liver and digestive system away
-        from harmful elements."
-        actions={buttons}
-      />
-    </FlexContainer>
-  );
-};
-
 const ListingCard = props => {
   return (
     <Card>
@@ -122,4 +55,4 @@ const ListingCard = props => {
   );
 };
 
-export default Content;
+export default ListingCard;

@@ -4,12 +4,9 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { useQuery, gql } from "@apollo/client";
 
 // for apollo grapgql
 import { ApolloProvider } from "@apollo/client";
-
-import Content from "./components/listingCard";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -18,45 +15,9 @@ const client = new ApolloClient({
   })
 });
 
-const Listings = gql`
-  {
-    books {
-      title
-      author
-    }
-  }
-`;
-
-const ModifyListing = gql`
-  mutation modifyBook($ep: Episode!, $review: ReviewInput!) {
-    createReview(episode: $ep, review: $review) {
-      stars
-      commentary
-    }
-  }
-`;
-
-function ExchangeRates() {
-  const { loading, error, data } = useQuery(Listings);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  return data.books.map(({ title, author }) => (
-    <div key={title}>
-      <p>
-        {title}: {author}
-      </p>
-    </div>
-  ));
-}
-
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <Content></Content>
-      <ExchangeRates></ExchangeRates>
-      <button>Click me</button>
       <App />
     </ApolloProvider>
   </React.StrictMode>,

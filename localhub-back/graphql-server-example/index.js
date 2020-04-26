@@ -4,6 +4,16 @@ const { ApolloServer, gql } = require("apollo-server");
 // that together define the "shape" of queries that are executed against
 // your data.
 
+const MongoClient = require("mongodb").MongoClient;
+const uri =
+  "mongodb+srv://root:<password>@db-cluster-jivnd.gcp.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  console.log("collection");
+  client.close();
+});
+
 const books = [
   {
     title: "Harry Potter and the Chamber of Secrets",
