@@ -4,34 +4,19 @@ const { ApolloServer, gql } = require("apollo-server");
 // that together define the "shape" of queries that are executed against
 // your data.
 
-const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://root:<password>@db-cluster-jivnd.gcp.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  console.log("collection");
-  client.close();
-});
+let books;
 
-const books = [
-  {
-    title: "Harry Potter and the Chamber of Secrets",
-    author: "J.K. Rowling"
-  },
-  {
-    title: "Jurassic Park",
-    author: "Michael Crichton"
-  }
-];
+//Saving books to db
+const { saveOne, findAll } = require("./mongo-db/mongo");
 
 const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
 
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
-    title: String
+    name: String
     author: String
+    description: String
   }
 
   # The "Query" type is special: it lists all of the available queries that
@@ -46,7 +31,15 @@ const typeDefs = gql`
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books
+    books: () => {
+      return findAll()
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.warn("Error occured on findAll");
+        });
+    }
   }
 };
 
