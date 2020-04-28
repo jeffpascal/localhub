@@ -9,7 +9,7 @@ import { useQuery, gql } from "@apollo/client";
 function App() {
   const Listings = gql`
     {
-      books {
+      listings {
         name
         author
         description
@@ -32,7 +32,7 @@ function App() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
 
-    return data.books.map(({ name, author, description }) => (
+    return data.listings.map(({ name, author, description }) => (
       <ListingCard title={name} description={description} actions={buttons} />
     ));
   }

@@ -10,8 +10,8 @@ mongoose
   .catch(err => console.log(err));
 
 const findAll = async function getListings() {
-  let books = await ListingModel.find().sort("name");
-  return books;
+  let listings = await ListingModel.find().sort("name");
+  return listings;
 };
 
 const saveOne = async function saveListing(toSaveListing) {
