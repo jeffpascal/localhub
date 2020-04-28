@@ -17,16 +17,20 @@ function App() {
     }
   `;
 
-  const ModifyListing = gql`
-    mutation modifyBook($ep: Episode!, $review: ReviewInput!) {
-      createReview(episode: $ep, review: $review) {
-        stars
-        commentary
-      }
-    }
-  `;
+  async function SaveNewListing() {
+    const response = await fetch("http://localhost:7000/api/listings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "fetchname",
+        author: "fetchauthor",
+        description: "description"
+      })
+    });
+    console.log(await response.json());
+  }
 
-  function ExchangeRates() {
+  function GetAllListings() {
     const { loading, error, data } = useQuery(Listings);
 
     if (loading) return <p>Loading...</p>;
@@ -36,6 +40,7 @@ function App() {
       <ListingCard title={name} description={description} actions={buttons} />
     ));
   }
+
   const FlexContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +74,7 @@ function App() {
     <div className="App">
       <header className="App-header"></header>
       <FlexContainer>
-        <ExchangeRates></ExchangeRates>
+        <GetAllListings></GetAllListings>
       </FlexContainer>
     </div>
   );
