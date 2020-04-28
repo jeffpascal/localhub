@@ -47,8 +47,8 @@ const ListingCard = props => {
       <Title>{props.title}</Title>
       <Description>{props.description}</Description>
       <Actions>
-        {props.actions.map(item => (
-          <ActionButton>{item.label}</ActionButton>
+        {props.actions.map((item, index) => (
+          <ActionButton key={index}>{item.label}</ActionButton>
         ))}
       </Actions>
     </Card>
