@@ -1,10 +1,25 @@
+// Express config
+const express = require("express");
+const app = express();
+var cors = require("cors");
+const port = 7000;
+
+app.use(cors());
+
+//Json for express
+app.use(express.json());
+
+const listings = require("./routes/listings");
+
+app.use("/api/listings", listings);
+
+app.listen(port, () => console.log("Express is listening here " + port));
+
 const { ApolloServer, gql } = require("apollo-server");
 
 // A schema is a collection of type definitions (hence "typeDefs")
 // that together define the "shape" of queries that are executed against
 // your data.
-
-let books;
 
 //Saving books to db
 const { saveOne, findAll } = require("./mongo-db/mongo");
@@ -49,7 +64,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+  console.log(`🚀  GraphQL Server ready at ${url}`);
 });
 
 //With your server still running, visit http://localhost:4000 in your browser to open GraphQL Playground. (Apollo Server hosts GraphQL Playground automatically when you run it in development.)

@@ -20,7 +20,7 @@ const saveOne = async function saveListing(toSaveListing) {
     author: toSaveListing.author,
     description: toSaveListing.description
   });
-  listing = await listing.save();
+  return (listing = await listing.save());
 };
 
 module.exports.saveOne = saveOne;
