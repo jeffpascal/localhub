@@ -9,7 +9,9 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let result = await saveOne(req.body);
+  let result = saveOne(req.body);
+  console.log(await result);
+
   res.json(await result);
 });
 

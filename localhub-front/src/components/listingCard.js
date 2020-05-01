@@ -44,6 +44,7 @@ const Actions = styled.div`
 const ListingCard = props => {
   return (
     <Card>
+      <p>{props.id}</p>
       <Title>{props.title}</Title>
       <Description>{props.description}</Description>
       <Actions>

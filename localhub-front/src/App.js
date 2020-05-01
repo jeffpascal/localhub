@@ -5,11 +5,13 @@ import ListingCard from "./components/listingCard";
 import { FaCommentAlt, FaThumbsUp, FaRegEye } from "react-icons/fa";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
-
+import Add from "./components/AddButton";
+import FlexContainer from "./components/MyStyles";
 function App() {
   const Listings = gql`
     {
       listings {
+        _id
         name
         author
         description
@@ -17,35 +19,6 @@ function App() {
     }
   `;
 
-  async function SaveNewListing() {
-    const response = await fetch("http://localhost:7000/api/listings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: "fetchname",
-        author: "fetchauthor",
-        description: "description"
-      })
-    });
-    console.log(await response.json());
-  }
-
-  function GetAllListings() {
-    const { loading, error, data } = useQuery(Listings);
-
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
-
-    return data.listings.map(({ name, author, description }) => (
-      <ListingCard title={name} description={description} actions={buttons} />
-    ));
-  }
-
-  const FlexContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    background-color: DodgerBlue;
-  `;
   const buttons = [
     {
       label: (
@@ -70,10 +43,40 @@ function App() {
     }
   ];
 
+  async function SaveNewListing() {
+    const response = await fetch("http://localhost:7000/api/listings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: "fetchname",
+        author: "fetchauthor",
+        description: "description"
+      })
+    });
+    console.log(await response.json());
+  }
+
+  function GetAllListings() {
+    const { loading, error, data } = useQuery(Listings);
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+    console.log(data);
+    return data.listings.map(({ _id, name, author, description }) => (
+      <ListingCard
+        id={_id}
+        title={name}
+        description={description}
+        actions={buttons}
+      />
+    ));
+  }
+
   return (
     <div className="App">
       <header className="App-header"></header>
       <FlexContainer>
+        <Add></Add>
         <GetAllListings></GetAllListings>
       </FlexContainer>
     </div>
