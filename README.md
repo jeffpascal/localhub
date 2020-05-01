@@ -27,5 +27,9 @@ TODO:
 - Local marketing
 - special url for zones ex: sag.localhub.com, giroc.localhub.com
 
+# Monetizing
+
+- Stripe monthly subscription to have listings at the top 
+- advertising
 
  
