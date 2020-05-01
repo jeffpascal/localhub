@@ -5,6 +5,7 @@ Application where users can list their local produce/business in their area. Exa
 Technology Stack: 
 
 B: Express, Graphql, Mongo
+
 F: React
 
 TODO:
