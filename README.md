@@ -10,6 +10,22 @@ B: Express, Graphql, Mongo
 
 F: React
 
+# Starting project:
+
+1. express/gql server
+
+```
+cd localhub-back
+npm install
+node index.js
+```
+2. react app
+
+```
+cd localhub-front
+npm run start
+```
+
 TODO:
 - Hosting
 - Define proper mangoose model for Listing
