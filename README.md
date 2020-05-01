@@ -11,6 +11,7 @@ B: Express, Graphql, Mongo
 F: React
 
 TODO:
+- Hosting
 - Define proper mangoose model for Listing
 - Anonymous postings
 - Automatically adjusted map 10km radius from current pos
