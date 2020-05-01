@@ -23,6 +23,7 @@ node index.js
 
 ```
 cd localhub-front
+npm install
 npm run start
 ```
 
