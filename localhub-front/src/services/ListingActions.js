@@ -8,7 +8,7 @@ async function SaveNewListing(listing) {
       description: listing.description
     })
   });
-  return await response.body;
+  return await response.json();
 }
 
 export default SaveNewListing;

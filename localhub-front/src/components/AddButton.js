@@ -22,17 +22,17 @@ const Add = () => {
   const [name, setName] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
+  const [contact, setContact] = useState("");
 
-  const handleSubmit = event => {
+  async function handleSubmit(event) {
     event.preventDefault();
     let listing = {
       name: name,
       author: author,
       description: description
     };
-    let x = SaveNewListing(listing);
-    alert(x);
-  };
+    const savedListing = await SaveNewListing(listing);
+  }
   return (
     <form onSubmit={handleSubmit}>
       <FlexContainer>
@@ -58,6 +58,14 @@ const Add = () => {
             type="text"
             value={description}
             onChange={e => setDescription(e.target.value)}
+          ></input>
+        </label>
+        <label>
+          Contact
+          <input
+            type="text"
+            value={contact}
+            onChange={e => setContact(e.target.value)}
           ></input>
         </label>
         <button type="submit">Submit</button>

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 import Add from "./components/AddButton";
 import FlexContainer from "./components/MyStyles";
+import ScalingSquaresSpinner from "./components/ScalingSquaresSpinner";
 function App() {
   const Listings = gql`
     {
@@ -43,23 +44,10 @@ function App() {
     }
   ];
 
-  async function SaveNewListing() {
-    const response = await fetch("http://localhost:7000/api/listings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: "fetchname",
-        author: "fetchauthor",
-        description: "description"
-      })
-    });
-    console.log(await response.json());
-  }
-
   function GetAllListings() {
     const { loading, error, data } = useQuery(Listings);
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <ScalingSquaresSpinner></ScalingSquaresSpinner>;
     if (error) return <p>Error :(</p>;
     console.log(data);
     return data.listings.map(({ _id, name, author, description }) => (
